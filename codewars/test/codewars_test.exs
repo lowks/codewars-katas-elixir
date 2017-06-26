@@ -32,6 +32,23 @@ defmodule CodewarsTest do
     Enum.reduce((1..:rand.uniform(50)), [], fn (_i, acc) -> [Enum.random(@chars) | acc] end) |> Enum.join("")
   end
 
+  defmodule PilecubesTest do
+
+  use ExUnit.Case
+
+  def testFindNb(numtest, m, ans) do
+    IO.puts("Test #{numtest}")
+    assert Codewars.Pilecubes.find_nb(m) == ans
+  end
+
+  test "find_nb" do
+    testFindNb  1, 4183059834009, 2022
+    testFindNb  2, 24723578342962, -1
+    testFindNb  3, 135440716410000, 4824
+    testFindNb  4, 40539911473216, 3568
+  end
+end
+
 
   def randomtests(_, _, n) when n >= 45, do: IO.puts "Finished!"
   def randomtests(a, b, n) do
