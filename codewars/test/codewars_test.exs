@@ -49,6 +49,23 @@ defmodule CodewarsTest do
   end
 end
 
+defmodule Divisible13Test do
+
+ use ExUnit.Case
+
+ defp testing(numtest, n, ans) do
+   IO.puts("Test Divisble13: #{numtest}")
+   assert Codewars.Divisible13.thirt(n) == ans
+ end
+ test "thirt" do
+   testing(1, 8529, 79)
+   testing(2, 85299258, 31)
+   testing(3, 5634, 57)
+   testing(4, 1111111111, 71)
+   testing(5, 987654321, 30)
+ end
+end
+
 
   def randomtests(_, _, n) when n >= 45, do: IO.puts "Finished!"
   def randomtests(a, b, n) do
