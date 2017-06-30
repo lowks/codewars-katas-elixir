@@ -134,4 +134,37 @@ thirt(321) calculates 48, 48 and returns 48
       end
     end
   end
+
+  defmodule Revrot do
+
+      defp rotate_or_reverse(number) do
+        sum_of_cube = number
+                      |> String.to_integer
+                      |> Integer.digits
+                      |> Enum.map(fn(x) -> x * x * x end)
+                      |> Enum.sum
+        cond do
+          (sum_of_cube |> rem(2) == 0) -> number |> String.reverse
+          (sum_of_cube |> rem(2) != 0) -> number |> String.split_at(1) |> Tuple.to_list |> Enum.reverse |> Enum.join
+        end
+      end
+
+      defp do_process_string(string, sz) do
+        # break string down into chunks of sz and if each chunk sum_of_cubes_divisible_by_two is true reverse else rotate
+        string
+        |> Stream.unfold(&String.split_at(&1, sz))
+        |> Enum.take_while(&(&1 != "" && String.length(&1) >= sz))
+        |> Enum.map(fn(x) -> rotate_or_reverse(x) end)
+        |> Enum.join
+      end
+
+      def revrot(str, sz) do
+        # your code
+        cond do
+          (sz == 0) or (sz > String.length(str)) -> ""
+          (sz < String.length(str)) -> do_process_string(str, sz)
+        end
+      end
+
+  end
 end
