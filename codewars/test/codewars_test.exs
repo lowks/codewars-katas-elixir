@@ -66,6 +66,25 @@ defmodule Divisible13Test do
  end
 end
 
+defmodule RevrotTest do
+
+  use ExUnit.Case
+
+  def testing(numtest, s, sz, ans) do
+    IO.puts("Revrot Test #{numtest}")
+    assert Codewars.Revrot.revrot(s, sz) == ans
+  end
+
+  test "revrot" do
+    testing(1, "1234", 0, "")
+    testing(2, "", 0, "")
+    testing(3, "1234", 5, "")
+    s = "733049910872815764"
+    testing(4, s, 5, "330479108928157")
+  end
+
+end
+
 
   def randomtests(_, _, n) when n >= 45, do: IO.puts "Finished!"
   def randomtests(a, b, n) do
